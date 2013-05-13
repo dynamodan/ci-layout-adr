@@ -5,7 +5,8 @@ class MY_Controller extends CI_Controller {
 	var $output_method = 'display';
 	var $content = array();
 	var $session = null;
-	var $defaultTableRows = 20; // options are 10, 20, 30, 40
+	var $template_vars = array();
+	var $defaultTableRows = 20;
 	
 	function __construct() {
 		

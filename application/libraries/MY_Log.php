@@ -11,7 +11,10 @@ class MY_Log extends CI_Log {
 		$level = strtoupper($level);
 		
 		$config =& get_config();
-		if(function_exists('get_instance')) { $CI = &get_instance(); }
+		if(function_exists('get_instance') && class_exists('CI_Controller')) {
+			$CI = &get_instance();
+		}
+		
 		if($level == 'SYSLOG') { // only honor this special log level
 			if(isset($CI) && $CI->input->is_cli_request()) {
 				echo preg_replace('/[\r\n]+$/', "\n", $msg."\n");
@@ -22,7 +25,12 @@ class MY_Log extends CI_Log {
 			// say where we came from:
 			$fn_space = 15;
 			$bt = debug_backtrace();
-			$ct = $bt[1];
+			
+			// determine if we were called from the "say" helper function:
+			$bt_index = 1;
+			if($bt[2]['function'] == 'say') { $bt_index = 2; }
+			
+			$ct = $bt[$bt_index];
 			$callInfo = substr(str_repeat(' ', $fn_space).$ct['file'].':', -1 * $fn_space, $fn_space).substr(str_repeat(' ', 5).$ct['line'].':', -5, 5);
 			$msg = $callInfo.$msg;
 			
