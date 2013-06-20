@@ -7,6 +7,7 @@ class MY_Controller extends CI_Controller {
 	var $session = null;
 	var $template_vars = array();
 	var $defaultTableRows = 20;
+	var $userData = array();
 	
 	function __construct() {
 		
@@ -16,13 +17,17 @@ class MY_Controller extends CI_Controller {
 		
 		if($ctrl == '') { $ctrl = 'main'; }
 		
-		// default date() (and possibly other functions) to UTC:
-		date_default_timezone_set('UTC');
-		user_date('T');
+		$this->content['locTxt'] = '';
+		$this->content['count_site'] = '1,004,000';
+		$this->content['location'] = ''; // set this later
 		
-		$this->default_header = 'default_header';
-		$this->default_footer = 'default_footer';
-		$this->public_urls = array('login', 'main', 'signup', 'recoverpassword');
+		// default date() (and possibly other functions) to UTC:
+		// date_default_timezone_set('UTC');
+		// user_date('T');
+		
+		$this->default_header = 'header';
+		$this->default_footer = 'footer';
+		$this->public_urls = array('login', 'main', 'browse', 'register');
 		
 		// for the occasional url that does not need to be secure, such as faq or about us pages outside of the login
 		$this->insecure_urls = array('about', 'faq', 'someinsecureurl', 'main'); // this just says not to forward to the https equivalent.
