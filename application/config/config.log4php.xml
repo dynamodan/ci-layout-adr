@@ -1,0 +1,18 @@
+<configuration xmlns="http://logging.apache.org/log4php/">
+    <appender name="daily" class="LoggerAppenderDailyFile">
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date{Y-m-d H:i:s} %-5level %.-20X{FILE}:%X{LINE} %msg%n" />
+        </layout>
+        <param name="file" value="logs/phplogs-%s.txt" />
+        <param name="datePattern" value="Y-m-d" />
+    </appender>
+    <!-- <appender name="globalvar" class="LoggerAppenderGlobal">
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date{Y-m-d H:i:s} %-5level %.-20X{FILE}:%X{LINE} %msg%n" />
+        </layout>
+    </appender> -->
+    <root>
+        <appender_ref ref="daily" />
+        <!-- <appender_ref ref="globalvar" /> -->
+    </root>
+</configuration>

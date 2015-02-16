@@ -1,0 +1,7 @@
+{
+    "require": {
+        "neverwoods/validformbuilder": "3.4.1",
+        "apache/log4php": "2.3.0",
+        "d11wtq/boris": "1.0.10"
+    }
+}
